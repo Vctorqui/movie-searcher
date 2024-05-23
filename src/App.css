@@ -5,6 +5,30 @@
   text-align: center;
 }
 
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.movies {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+/* TODO: CAMBIAR TAMAñO*/
+img {
+  max-width: 300px;
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;
