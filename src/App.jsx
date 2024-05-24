@@ -37,8 +37,10 @@ function useSearch() {
 
 
 function App() {
+  const [sort, setSort] = useState(false)
   const {search, setSearch, error} = useSearch()
-  const { movies, getMovies } = useMovies({search})
+  const { movies, getMovies, loading } = useMovies({search, sort})
+
   // const movies = responseMovies.Search
   // const hasMovies = movies?.length > 0
   // const inputRef = useRef()
@@ -47,6 +49,10 @@ function App() {
     event.preventDefault()
     // console.log({search})
     getMovies()
+  }
+
+  const handleSort = () => {
+  setSort(!sort)
   }
 
   const handleChange = (event) => {
@@ -104,13 +110,16 @@ function App() {
           value={search} 
           name="query" 
           placeholder='Ej: Avengers, Spideram...' />
+          <input type="checkbox" onChange={handleSort} checked={sort} />
         <button>Search</button>
       </form>
       {error && <Typography sx={{ color: 'red' }}>{error}</Typography>}
       </Box>
       <main>
-       
-       <Movies movies={movies} />
+       {
+        loading ? <p>Cargando...</p> : <Movies movies={movies} />
+       }
+      
       </main>
     </Container>
 
